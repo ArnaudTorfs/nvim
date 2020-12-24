@@ -50,9 +50,9 @@ Plug 'sheerun/vim-polyglot'
 
 
 "Python IDE 
-Plug 'davidhalter/jedi-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
 
 "Auto Quote Completion
 Plug 'jiangmiao/auto-pairs'
@@ -61,7 +61,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
 
 "Code Folding Plugin
-Plug 'tmhedberg/SimpylFold'
+"Plug 'tmhedberg/SimpylFold'
 
 "Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
