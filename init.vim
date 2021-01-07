@@ -25,7 +25,7 @@ if !&scrolloff
 
 call plug#begin()
 
-Plug 'ThePrimeagen/vim-be-good'
+"Plug 'ThePrimeagen/vim-be-good'
 Plug 'morhetz/gruvbox'
 
 Plug 'scrooloose/nerdtree'
@@ -35,15 +35,15 @@ Plug 'scrooloose/nerdcommenter'
 "code auto-formatter
 Plug 'sbdchd/neoformat'
 
-Plug 'Shougo/defx.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'Shougo/defx.nvim'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 
 
 Plug 'lervag/vimtex'
 
 "Code Checker
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 
 "
 Plug 'sheerun/vim-polyglot'
@@ -91,12 +91,12 @@ filetype indent on
 let g:tex_flavor='latex'
 
 "Python IDE
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " disable autocompletion, because we use deoplete for completion
-let g:jedi#completions_enabled = 0
+"let g:jedi#completions_enabled = 0
 " open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
-let g:python3_host_prog = 'C:\Users\arnau\AppData\Local\Programs\Python\Python37\python.exe'
+"let g:jedi#use_splits_not_buffers = "right"
+"let g:python3_host_prog = 'C:\Users\arnau\AppData\Local\Programs\Python\Python37\python.exe'
 "How to use jedi-vim
 "Move the cursor to the class or method you want to check, then press the various supported shortcut provided by jedi-vim:
 "<leader>d: go to definition
