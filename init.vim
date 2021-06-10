@@ -1,4 +1,3 @@
-
 let mapleader = "<space>"
 
 set clipboard+=unnamedplus
@@ -59,6 +58,7 @@ Plug 'jiangmiao/auto-pairs'
 
 "Status bar plugin: vim-airline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 "Code Folding Plugin
 "Plug 'tmhedberg/SimpylFold'
@@ -108,7 +108,7 @@ let g:tex_flavor='latex'
 let g:airline_theme='tomorrow' " <theme> is a valid theme name
 
 "Code Checker
-call neomake#configure#automake('nrwi', 500)
+"call neomake#configure#automake('nrwi', 500)
 
 "Source Information
 "https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/
