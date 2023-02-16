@@ -105,7 +105,7 @@ function M.setup()
 	require("setups.lsp")
 	require("setups.lualine")
 	require("setups.treesitter")
-	require("setups.mason")
+	require("setups.mason").setup()
 	require("setups.neodev")
 	require("setups.telescope")
 end
