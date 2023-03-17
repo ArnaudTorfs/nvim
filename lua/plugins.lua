@@ -111,6 +111,18 @@ function M.setup()
 			end,
 		}
 
+		use { 'duane9/nvim-rg' }
+
+		-- project config
+		use {
+			'windwp/nvim-projectconfig',
+			config = function()
+				require('nvim-projectconfig').setup({
+					project_dir = vim.fn.getcwd()
+				})
+			end
+		}
+
 		use {
 			"ThePrimeagen/harpoon",
 			requires = { "nvim-lua/plenary.nvim" },
