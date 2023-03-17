@@ -111,6 +111,13 @@ function M.setup()
 			end,
 		}
 
+		use {
+			"epwalsh/obsidian.nvim",
+			config = function()
+				require("setups.obsidian").setup()
+			end
+		}
+
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
 		if has_plugins then
