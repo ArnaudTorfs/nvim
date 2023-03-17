@@ -112,6 +112,14 @@ function M.setup()
 		}
 
 		use {
+			"ThePrimeagen/harpoon",
+			requires = { "nvim-lua/plenary.nvim" },
+			config = function()
+				require("setups.harpoon").setup()
+			end
+		}
+
+		use {
 			"epwalsh/obsidian.nvim",
 			config = function()
 				require("setups.obsidian").setup()
