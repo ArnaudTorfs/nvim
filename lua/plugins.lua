@@ -123,6 +123,15 @@ function M.setup()
 			end
 		}
 
+		-- startup
+		use {
+			"startup-nvim/startup.nvim",
+			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			config = function()
+				require "startup".setup()
+			end
+		}
+
 		use {
 			"ThePrimeagen/harpoon",
 			requires = { "nvim-lua/plenary.nvim" },
