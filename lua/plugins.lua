@@ -74,6 +74,26 @@ function M.setup()
 				}
 			end,
 		})
+		-- Debugging
+		use {
+			"mfussenegger/nvim-dap",
+			opt = true,
+			event = "BufReadPre",
+			module = { "dap" },
+			wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
+			requires = {
+				"Pocco81/DAPInstall.nvim",
+				"theHamsta/nvim-dap-virtual-text",
+				"rcarriga/nvim-dap-ui",
+				"mfussenegger/nvim-dap-python",
+				"nvim-telescope/telescope-dap.nvim",
+				{ "leoluz/nvim-dap-go",                module = "dap-go" },
+				{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
+			},
+			config = function()
+				require("setups.dap").setup()
+			end,
+		}
 
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
