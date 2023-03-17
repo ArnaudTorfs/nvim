@@ -46,7 +46,12 @@ function M.setup()
 		}
 
 		-- Git related plugins
-		use 'tpope/vim-fugitive'
+		use {
+			'tpope/vim-fugitive',
+			config = function()
+				require("setups.fugitive").setup()
+			end
+		}
 		use 'tpope/vim-rhubarb'
 		use 'lewis6991/gitsigns.nvim'
 
