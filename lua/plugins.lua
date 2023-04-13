@@ -159,6 +159,13 @@ function M.setup()
 			end
 		}
 
+		use {
+			"justinmk/vim-sneak",
+			config = function()
+				require("setups.sneak").setup()
+			end
+		}
+
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
 		if has_plugins then
