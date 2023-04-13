@@ -8,7 +8,7 @@ local function executeCommandFromSettings(setingsKey)
 	local json = vim.json.decode(lines)
 	local command = json[setingsKey]
 	if command then
-		vim.cmd("! " .. command)
+		vim.cmd("vsplit term://" .. command)
 	end
 end
 

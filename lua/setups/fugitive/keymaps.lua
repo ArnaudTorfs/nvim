@@ -6,12 +6,22 @@ local whichkey = require "which-key"
 --   vim.keymap.set("n", lhs, rhs, { silent = true, desc = desc })
 -- end
 
+function M.openGitLogs()
+  local windowHeight = vim.api.nvim_win_get_height(0)
+  local orientation = "vertical"
+  if (windowHeight > 60) then
+    orientation = "horizontal"
+  end
+  local command = ":bel " .. orientation .. " Git --paginate log --oneline<cr>"
+  return command
+end
+
 function M.setup()
   local keymap = {
     g = {
       g = { ":tab Git <CR>", "Fugitive" },
       G = { ":vert Git <CR>", "Fugitive" },
-      l = { ":vert Git --paginate log --oneline<cr>", "Git Log" },
+      l = { M.openGitLogs(), "Git Log" },
     },
   }
 
