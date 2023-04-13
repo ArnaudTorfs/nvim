@@ -148,6 +148,17 @@ function M.setup()
 			end
 		}
 
+		use {
+			'akinsho/flutter-tools.nvim',
+			requires = {
+				'nvim-lua/plenary.nvim',
+				'stevearc/dressing.nvim', -- optional for vim.ui.select
+			},
+			config = function()
+				require("flutter-tools").setup {} -- use defaults
+			end
+		}
+
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
 		if has_plugins then
