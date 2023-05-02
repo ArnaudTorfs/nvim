@@ -11,14 +11,16 @@ function M.setup()
   local whichkey = require "which-key"
 
   local keymaps = {
-    name = "[T]fee",
-    t = { "<cmd>NvimTreeToggle<cr>", "[T]oggle NvimTree" },
-    f = { "<cmd>NvimTreeFocus<cr>", "[F]ocus NvimTree" },
+    name = "[T]ree",
+    t = {
+      t = { "<cmd>NvimTreeToggle<cr>", "[T]oggle NvimTree" },
+      f = { "<cmd>NvimTreeFocus<cr>", "[F]ocus NvimTree" },
+    }
   }
 
   whichkey.register(keymaps, {
-    mode = { "n"  },
-    prefix = "t",
+    mode = { "n" },
+    prefix = "<leader>",
     buffer = nil,
     silent = true,
     noremap = true,

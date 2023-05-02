@@ -176,6 +176,44 @@ function M.setup()
 			end
 		}
 
+		use {
+			"nvim-neotest/neotest",
+			opt = true,
+			wants = {
+				"plenary.nvim",
+				"nvim-treesitter",
+				"FixCursorHold.nvim",
+				"neotest-python",
+				"neotest-plenary",
+				"neotest-vim-test",
+				"neotest-rust",
+				"vim-test",
+				"overseer.nvim",
+			},
+			requires = {
+				"vim-test/vim-test",
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+				"antoinemadec/FixCursorHold.nvim",
+				"nvim-neotest/neotest-python",
+				"nvim-neotest/neotest-plenary",
+				"nvim-neotest/neotest-vim-test",
+				"rouge8/neotest-rust",
+			},
+			module = { "neotest", "neotest.async" },
+			cmd = {
+				"TestNearest",
+				"TestFile",
+				"TestSuite",
+				"TestLast",
+				"TestVisit",
+			},
+			config = function()
+				require("setups.neotest").setup()
+			end,
+			disable = false,
+		}
+
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
 		if has_plugins then
