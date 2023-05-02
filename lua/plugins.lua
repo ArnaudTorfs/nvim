@@ -178,8 +178,9 @@ function M.setup()
 
 		use {
 			"nvim-neotest/neotest",
-			opt = true,
+			opt = false,
 			wants = {
+				'stevearc/overseer.nvim',
 				"plenary.nvim",
 				"nvim-treesitter",
 				"FixCursorHold.nvim",
