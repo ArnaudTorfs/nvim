@@ -24,7 +24,7 @@ function M.setup()
 	keymap.set({ 'n', 'v' }, '<leader><F5>', "<cmd>lua require('commands').LaunchCommand()<cr>", { silent = false })
 	keymap.set({ 'n', 'v' }, '<F6>', "<cmd>lua require('commands').TestCommand()<cr>", { silent = false })
 	keymap.set({ 'n', 'v' }, '<leader>cc', "<cmd>lua require('filetypes.cpp').switchHeaderFile()<cr>",
-		{ silent = false })
+	    { silent = false })
 
 	-- keymap.set('n', '<leader>K', 'oTODO:<esc>VgcA', { silent = true, noremap=true })
 	keymap.set('n', '<leader>K', '', { silent = true, noremap = true })
