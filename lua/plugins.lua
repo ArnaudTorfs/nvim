@@ -213,6 +213,12 @@ function M.setup()
 			end,
 			disable = false,
 		}
+		use {
+		    'simrat39/rust-tools.nvim',
+		    config = function()
+			    require("setups.rusttools").setup()
+		    end,
+		}
 
 		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 		local has_plugins, plugins = pcall(require, 'custom.plugins')
