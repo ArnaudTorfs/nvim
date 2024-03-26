@@ -1,21 +1,20 @@
 local M = {}
 
 function M.setup()
-	-- Install packer
-	local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-	local is_bootstrap = false
-	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-		is_bootstrap = true
-		vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-		vim.cmd [[packadd packer.nvim]]
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not vim.loop.fs_stat(lazypath) then
+		-- bootstrap lazy.nvim
+		-- stylua: ignore
+		vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git",
+			"--branch=stable", lazypath })
 	end
-	require('packer').startup(function(use)
-		-- Package manager
-		use 'wbthomason/packer.nvim'
 
-		use { -- LSP Configuration & Plugins
+	vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+	require('lazy').setup({
+		{ -- LSP Configuration & Plugins
 			'neovim/nvim-lspconfig',
-			requires = {
+			dependencies = {
 				-- Automatically install LSPs to stdpath for neovim
 				'williamboman/mason.nvim',
 				'williamboman/mason-lspconfig.nvim',
@@ -26,52 +25,50 @@ function M.setup()
 				-- Additional lua configuration, makes nvim stuff amazing
 				'folke/neodev.nvim',
 			},
-		}
+		},
 
-		use { -- Autocompletion
+		{ -- Autocompletion
 			'hrsh7th/nvim-cmp',
-			requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-		}
+			dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+		},
 
-		use { -- Highlight, edit, and navigate code
+		{ -- Highlight, edit, and navigate code
 			'nvim-treesitter/nvim-treesitter',
-			run = function()
+			build = function()
 				pcall(require('nvim-treesitter.install').update { with_sync = true })
 			end,
-		}
-
-		use { -- Additional text objects via treesitter
-			'nvim-treesitter/nvim-treesitter-textobjects',
-			after = 'nvim-treesitter',
-		}
+			dependencies = {
+				'nvim-treesitter/nvim-treesitter-textobjects',
+			},
+		},
 
 		-- Git related plugins
-		use {
+		{
 			'tpope/vim-fugitive',
 			config = function()
 				require("setups.fugitive").setup()
 			end
-		}
-		use 'tpope/vim-rhubarb'
-		use 'lewis6991/gitsigns.nvim'
+		},
+		'tpope/vim-rhubarb',
+		'lewis6991/gitsigns.nvim',
 
-		use "ellisonleao/gruvbox.nvim"
-		use "folke/tokyonight.nvim"
-		use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-		use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-		use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-		use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+		"ellisonleao/gruvbox.nvim",
+		"folke/tokyonight.nvim",
+		'nvim-lualine/lualine.nvim', -- Fancier statusline
+		{ 'lukas-reineke/indent-blankline.nvim',      main = 'ibl' }, -- Add indentation guides even on blank lines
+		'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+		'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
 		-- Fuzzy Finder (files, lsp, etc)
-		use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+		{ 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
 
-		-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-		use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+		-- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
+		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',   cond = vim.fn.executable 'make' == 1 },
 
 		--logfiles related:
-		use 'mtdl9/vim-log-highlighting'
+		'mtdl9/vim-log-highlighting',
 
-		use({
+		{
 			"Pocco81/auto-save.nvim",
 			config = function()
 				require("auto-save").setup {
@@ -79,9 +76,9 @@ function M.setup()
 					-- or just leave it empty :)
 				}
 			end,
-		})
-		--
-		use {
+		},
+
+		{
 			"folke/which-key.nvim",
 			config = function()
 				vim.o.timeout = true
@@ -90,15 +87,15 @@ function M.setup()
 				--
 				-- }
 			end
-		}
+		},
 		-- Debugging
-		use {
+		{
 			"mfussenegger/nvim-dap",
-			opt = true,
+			lazy = true,
 			event = "BufReadPre",
 			module = { "dap" },
-			wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
-			requires = {
+			dependencies = {
+				"nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim",
 				"Pocco81/DAPInstall.nvim",
 				"theHamsta/nvim-dap-virtual-text",
 				"rcarriga/nvim-dap-ui",
@@ -110,76 +107,85 @@ function M.setup()
 			config = function()
 				require("setups.dap").setup()
 			end,
-		}
+		},
 
-		use { 'duane9/nvim-rg' }
+		'duane9/nvim-rg',
 
 		-- project config
-		use {
+		{
 			'windwp/nvim-projectconfig',
 			config = function()
 				require('nvim-projectconfig').setup({
 					project_dir = vim.fn.getcwd()
 				})
 			end
-		}
+		},
 
 		-- startup
-		use {
+		{
 			"startup-nvim/startup.nvim",
-			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 			config = function()
 				require "startup".setup()
 			end
-		}
+		},
 
-		use {
+		{
 			"ThePrimeagen/harpoon",
-			requires = { "nvim-lua/plenary.nvim" },
+			dependencies = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("setups.harpoon").setup()
 			end
-		}
+		},
 
-		use {
+		{
 			"epwalsh/obsidian.nvim",
 			config = function()
 				require("setups.obsidian").setup()
 			end
-		}
+		},
 
-		use {
+		{
 			'akinsho/flutter-tools.nvim',
-			requires = {
+			dependencies = {
 				'nvim-lua/plenary.nvim',
 				'stevearc/dressing.nvim', -- optional for vim.ui.select
 			},
 			config = function()
 				require("flutter-tools").setup {} -- use defaults
 			end
-		}
+		},
 
-		use {
+		{
 			"justinmk/vim-sneak",
 			config = function()
 				require("setups.sneak").setup()
 			end
-		}
+		},
 
-		use {
+		{
 			'nvim-tree/nvim-tree.lua',
-			requires = {
+			dependencies = {
 				'nvim-tree/nvim-web-devicons', -- optional
 			},
 			config = function()
 				require("setups.nvimtree").setup()
 			end
-		}
+		},
 
-		use {
+		{
 			"nvim-neotest/neotest",
-			opt = false,
-			wants = {
+			lazy = false,
+			dependencies = {
+				"nvim-neotest/nvim-nio",
+				"vim-test/vim-test",
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+				"antoinemadec/FixCursorHold.nvim",
+				"nvim-neotest/neotest-python",
+				"nvim-neotest/neotest-plenary",
+				"nvim-neotest/neotest-vim-test",
+				"rouge8/neotest-rust",
 				'stevearc/overseer.nvim',
 				"plenary.nvim",
 				"nvim-treesitter",
@@ -190,18 +196,8 @@ function M.setup()
 				"neotest-rust",
 				"vim-test",
 				"overseer.nvim",
+				"nvim-neotest/neotest-go",
 			},
-			requires = {
-				"vim-test/vim-test",
-				"nvim-lua/plenary.nvim",
-				"nvim-treesitter/nvim-treesitter",
-				"antoinemadec/FixCursorHold.nvim",
-				"nvim-neotest/neotest-python",
-				"nvim-neotest/neotest-plenary",
-				"nvim-neotest/neotest-vim-test",
-				"rouge8/neotest-rust",
-			},
-			module = { "neotest", "neotest.async" },
 			cmd = {
 				"TestNearest",
 				"TestFile",
@@ -212,42 +208,18 @@ function M.setup()
 			config = function()
 				require("setups.neotest").setup()
 			end,
-			disable = false,
-		}
-		use {
-		    'simrat39/rust-tools.nvim',
-		    config = function()
-			    require("setups.rusttools").setup()
-		    end,
-		}
-
-		-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
-		local has_plugins, plugins = pcall(require, 'custom.plugins')
-		if has_plugins then
-			plugins(use)
-		end
-
-		if is_bootstrap then
-			require('packer').sync()
-		end
-	end)
-
-	-- When we are bootstrapping a configuration, it doesn't
-	-- make sense to execute the rest of the init.lua.
-	--
-	-- You'll need to restart nvim, and then it will work.
-	if is_bootstrap then
-		print '=================================='
-		print '    Plugins are being installed'
-		print '    Wait until Packer completes,'
-		print '       then restart nvim'
-		print '=================================='
-		return
-	end
+			enabled = true,
+		},
+		{
+			'simrat39/rust-tools.nvim',
+			config = function()
+				require("setups.rusttools").setup()
+			end,
+		},
+	})
 
 	require("setups.comment")
 	require("setups.gitsigns")
-	require("setups.indent_blankline")
 	require("setups.lsp")
 	require("setups.lualine")
 	require("setups.treesitter")

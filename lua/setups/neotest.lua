@@ -38,7 +38,7 @@ function M.setup()
         dap = { justMyCode = false },
         runner = "unittest",
       },
-      require "neotest-jest",
+      -- require "neotest-jest",
       require "neotest-go",
       require "neotest-plenary",
       require "neotest-vim-test" {
@@ -48,8 +48,6 @@ function M.setup()
     },
   }
   setKeymaps()
-  -- vim-test
-  config_test()
 end
 
 return M
