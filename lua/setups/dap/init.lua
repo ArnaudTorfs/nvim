@@ -53,6 +53,7 @@ end
 local function configure_debuggers()
   require("setups.dap.lua").setup()
   require("setups.dap.cpp").setup()
+  require("setups.dap.csharp").setup()
   require('dap-python').setup('./.venv/bin/python3')
   -- require("setups.dap.rust").setup()
   -- require("setups.dap.go").setup()

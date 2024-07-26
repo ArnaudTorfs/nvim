@@ -54,10 +54,10 @@ function M.setup()
 
 		"ellisonleao/gruvbox.nvim",
 		"folke/tokyonight.nvim",
-		'nvim-lualine/lualine.nvim', -- Fancier statusline
+		'nvim-lualine/lualine.nvim',                    -- Fancier statusline
 		{ 'lukas-reineke/indent-blankline.nvim',      main = 'ibl' }, -- Add indentation guides even on blank lines
-		'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-		'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+		'numToStr/Comment.nvim',                        -- "gc" to comment visual regions/lines
+		'tpope/vim-sleuth',                             -- Detect tabstop and shiftwidth automatically
 
 		-- Fuzzy Finder (files, lsp, etc)
 		{ 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -77,7 +77,16 @@ function M.setup()
 				}
 			end,
 		},
-
+		{
+			"kylechui/nvim-surround",
+			version = "*", -- Use for stability; omit to use `main` branch for the latest features
+			event = "VeryLazy",
+			config = function()
+				require("nvim-surround").setup({
+					-- Configuration here, or leave empty to use defaults
+				})
+			end
+		},
 		{
 			"folke/which-key.nvim",
 			config = function()
@@ -95,7 +104,8 @@ function M.setup()
 			event = "BufReadPre",
 			module = { "dap" },
 			dependencies = {
-				"nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim",
+				"nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python",
+				"which-key.nvim",
 				"Pocco81/DAPInstall.nvim",
 				"theHamsta/nvim-dap-virtual-text",
 				"rcarriga/nvim-dap-ui",
@@ -138,12 +148,12 @@ function M.setup()
 			end
 		},
 
-		{
-			"epwalsh/obsidian.nvim",
-			config = function()
-				require("setups.obsidian").setup()
-			end
-		},
+		-- {
+		-- 	"epwalsh/obsidian.nvim",
+		-- 	config = function()
+		-- 		require("setups.obsidian").setup()
+		-- 	end
+		-- },
 
 		{
 			'akinsho/flutter-tools.nvim',

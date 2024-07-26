@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  local codelldb_path     = '/Users/arnaud/.local/share/nvim/mason/bin/codelldb'
+  local codelldb_path     = '/home/arnaud/.local/share/nvim/mason/bin/codelldb'
   local dap               = require('dap')
   dap.adapters.lldb       = {
     type = "server",
@@ -29,7 +29,14 @@ function M.setup()
       end,
       cwd = '${workspaceFolder}',
       stopOnEntry = false,
-      args = {},
+      args = function()
+        local utils = require("utils")
+        local projectRootDir = vim.fn.getcwd()
+        local file = projectRootDir .. "/settings.json"
+        local lines = utils.GetFileContent(file)
+        local json = vim.json.decode(lines)
+        return {json["args"]}
+      end
 
       -- 💀
       -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
@@ -46,17 +53,17 @@ function M.setup()
     },
   }
 
-  dap.configurations.cpp  = {
-    {
-      -- If you get an "Operation not permitted" error using this, try disabling YAMA:
-      --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-      name = "Attach to process",
-      type = 'cpp', -- Adjust this to match your adapter name (`dap.adapters.<name>`)
-      request = 'attach',
-      pid = require('dap.utils').pick_process,
-      args = {},
-    },
-  }
+  -- dap.configurations.cpp  = {
+  --   {
+  --     -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+  --     --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+  --     name = "Attach to process",
+  --     type = 'cpp', -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+  --     request = 'attach',
+  --     pid = require('dap.utils').pick_process,
+  --     args = {},
+  --   },
+  -- }
 
   -- If you want to use this for Rust and C, add something like this:
 
