@@ -35,7 +35,7 @@ function M.setup()
         local file = projectRootDir .. "/settings.json"
         local lines = utils.GetFileContent(file)
         local json = vim.json.decode(lines)
-        return {json["args"]}
+        return { json["args"] }
       end
 
       -- 💀
@@ -51,6 +51,17 @@ function M.setup()
       -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
       -- runInTerminal = false,
     },
+    {
+      name = 'Attach to process',
+      type = 'lldb',
+      request = 'attach',
+      pid = function()
+        local input = vim.fn.input('Process ID: ')
+        return tonumber(input)
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = false
+    }
   }
 
   -- dap.configurations.cpp  = {
