@@ -9,6 +9,14 @@ require('telescope').setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      no_ignore = true,
+      follow = true,
+      hidden = true,
+      file_ignore_patterns = { "node_modules", "bin", "obj", "Migrations", ".git", ".editorconfig" }
+    }
+  }
 }
 
 -- Enable telescope fzf native, if installed
