@@ -33,6 +33,7 @@ end
 
 function M.setup()
   require("neotest").setup {
+    loglevel = 1,
     adapters = {
       require "neotest-python" {
         dap = { justMyCode = false },
@@ -45,6 +46,10 @@ function M.setup()
         ignore_file_types = { "python", "vim", "lua" },
       },
       require "neotest-rust",
+      require "neotest-dotnet" {
+        dap = { justMyCode = false },
+        runner = "unittest",
+      },
     },
   }
   setKeymaps()

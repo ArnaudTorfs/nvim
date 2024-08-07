@@ -54,10 +54,12 @@ function M.setup()
 
 		"ellisonleao/gruvbox.nvim",
 		"folke/tokyonight.nvim",
-		'nvim-lualine/lualine.nvim',                    -- Fancier statusline
-		{ 'lukas-reineke/indent-blankline.nvim',      main = 'ibl' }, -- Add indentation guides even on blank lines
-		'numToStr/Comment.nvim',                        -- "gc" to comment visual regions/lines
-		'tpope/vim-sleuth',                             -- Detect tabstop and shiftwidth automatically
+		'nvim-lualine/lualine.nvim',
+		{ 'lukas-reineke/indent-blankline.nvim',      main = 'ibl' },
+
+		'numToStr/Comment.nvim',
+
+		'tpope/vim-sleuth',
 
 		-- Fuzzy Finder (files, lsp, etc)
 		{ 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -215,6 +217,7 @@ function M.setup()
 				"vim-test",
 				"overseer.nvim",
 				"nvim-neotest/neotest-go",
+				"Issafalcon/neotest-dotnet",
 			},
 			cmd = {
 				"TestNearest",
