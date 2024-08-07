@@ -14,13 +14,15 @@ function M.setup()
 
     vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-    require('lazy').setup({
-        { -- LSP Configuration & Plugins
-            'neovim/nvim-lspconfig',
-            dependencies = {
-                -- Automatically install LSPs to stdpath for neovim
-                'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
-                "mfussenegger/nvim-lint", "rshkarin/mason-nvim-lint",
+	require('lazy').setup({
+		{ -- LSP Configuration & Plugins
+			'neovim/nvim-lspconfig',
+			dependencies = {
+				-- Automatically install LSPs to stdpath for neovim
+				'williamboman/mason.nvim',
+				'williamboman/mason-lspconfig.nvim',
+				"mfussenegger/nvim-lint",
+				"rshkarin/mason-nvim-lint",
 
                 -- Useful status updates for LSP
                 'j-hui/fidget.nvim',
