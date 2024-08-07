@@ -16,13 +16,14 @@ function M.openGitLogs()
 end
 
 function M.setup()
-    local keymap = {
-        g = {
-            g = {":tab Git <CR>", "Fugitive"},
-            G = {":vert Git <CR>", "Fugitive"},
-            l = {M.openGitLogs(), "Git Log"}
-        }
-    }
+  local keymap = {
+    g = {
+      g = { ":tab Git <CR>", "Fugitive" },
+      b = { ":Git blame<CR>", "Blame" },
+      G = { ":vert Git <CR>", "Fugitive" },
+      l = { M.openGitLogs(), "Git Log" },
+    },
+  }
 
     whichkey.register(keymap, {
         mode = "n",
