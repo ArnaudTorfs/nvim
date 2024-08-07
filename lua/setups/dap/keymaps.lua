@@ -63,6 +63,7 @@ function M.setup()
     name = "Debug",
     e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
   }
+
   whichkey.register(keymap_v, {
     mode = "v",
     prefix = "<leader>",

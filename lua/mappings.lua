@@ -26,7 +26,7 @@ function M.setup()
 	keymap.set({ 'n', 'v' }, '<leader><F5>', "<cmd>lua require('commands').LaunchCommand()<cr>", { silent = false })
 	keymap.set({ 'n', 'v' }, '<F6>', "<cmd>lua require('commands').TestCommand()<cr>", { silent = false })
 	keymap.set({ 'n', 'v' }, '<leader>cc', "<cmd>lua require('filetypes.cpp').switchHeaderFile()<cr>",
-	    { silent = false })
+		{ silent = false })
 
 	-- keymap.set('n', '<leader>K', 'oTODO:<esc>VgcA', { silent = true, noremap=true })
 	keymap.set('n', '<leader>K', '', { silent = true, noremap = true })
@@ -34,14 +34,10 @@ function M.setup()
 	keymap.set('n', '<F12>', ':source $MYVIMRC<CR>', { silent = true })
 
 	-- Diagnostic keymaps
-	local diagnostic_keymaps = {
-	}
 	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 	vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-	vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
+	vim.keymap.set('n', 'do', vim.diagnostic.open_float)
 
-	-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, 'Go to previous [D]iagnostic')
-	-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, "Go to next [D]iagnostic")
 	-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, "Open Diagnostics")
 	-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,  "Open Diagnostics")
 end

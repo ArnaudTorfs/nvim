@@ -18,6 +18,8 @@ function M.setup()
 				-- Automatically install LSPs to stdpath for neovim
 				'williamboman/mason.nvim',
 				'williamboman/mason-lspconfig.nvim',
+				"mfussenegger/nvim-lint",
+				"rshkarin/mason-nvim-lint",
 
 				-- Useful status updates for LSP
 				'j-hui/fidget.nvim',
@@ -237,6 +239,13 @@ function M.setup()
 				require("setups.rusttools").setup()
 			end,
 		},
+		{
+			'ThePrimeagen/vim-be-good'
+		},
+		{
+			'stevearc/conform.nvim',
+			opts = {},
+		}
 	})
 
 	require("setups.comment")
@@ -248,6 +257,10 @@ function M.setup()
 	require("setups.neodev")
 	require("setups.telescope")
 	require("setups.luasnip")
+	require("setups.lspconfig")
+	require("mason-nvim-lint").setup()
+	require("setups.lint")
+	require("setups.conform")
 end
 
 return M
