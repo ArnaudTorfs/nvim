@@ -181,7 +181,7 @@ function M.setup()
         }, {
             'simrat39/rust-tools.nvim',
             config = function() require("setups.rusttools").setup() end
-        }
+        }, {'ThePrimeagen/vim-be-good'}, {'stevearc/conform.nvim', opts = {}}
     })
 
     require("setups.comment")
