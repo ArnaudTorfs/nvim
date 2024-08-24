@@ -193,6 +193,7 @@ function M.setup()
     require("setups.neodev")
     require("setups.telescope")
     require("setups.luasnip")
+    require("setups.conform")
 end
 
 return M
