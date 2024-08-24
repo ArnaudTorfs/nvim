@@ -125,7 +125,10 @@ cmp.setup {
             end
         end, {'i', 's'})
     },
-    sources = {{name = 'nvim_lsp'}, {name = 'luasnip'}}
+    sources = {
+        {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'buffer'},
+        {name = 'path'}
+    }
 }
 -- My plugins
 require("myplugin").attach_to_log_files()
