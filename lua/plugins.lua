@@ -20,6 +20,7 @@ function M.setup()
             dependencies = {
                 -- Automatically install LSPs to stdpath for neovim
                 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
+                "mfussenegger/nvim-lint", "rshkarin/mason-nvim-lint",
 
                 -- Useful status updates for LSP
                 'j-hui/fidget.nvim',
@@ -193,6 +194,9 @@ function M.setup()
     require("setups.neodev")
     require("setups.telescope")
     require("setups.luasnip")
+    require("setups.lspconfig")
+    require("mason-nvim-lint").setup()
+    require("setups.lint")
     require("setups.conform")
 end
 
