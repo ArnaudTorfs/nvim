@@ -7,21 +7,21 @@ local whichkey = require "which-key"
 -- end
 
 function M.setup()
-  local keymap = {
-    o = {
-      t = { ":ObsidianToday<cr>", "Obsidian Today Note" },
-      s = { ":ObsidianSearch<cr>", "Obsidian Search Note" },
-    },
-  }
+    local keymap = {
+        o = {
+            t = {":ObsidianToday<cr>", "Obsidian Today Note"},
+            s = {":ObsidianSearch<cr>", "Obsidian Search Note"}
+        }
+    }
 
-  whichkey.register(keymap, {
-    mode = "n",
-    prefix = "<leader>",
-    buffer = nil,
-    silent = true,
-    noremap = true,
-    nowait = false,
-  })
+    whichkey.register(keymap, {
+        mode = "n",
+        prefix = "<leader>",
+        buffer = nil,
+        silent = true,
+        noremap = true,
+        nowait = false
+    })
 end
 
 return M
