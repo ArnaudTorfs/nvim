@@ -43,13 +43,10 @@ function M.setup()
     keymap.set('n', '<F12>', ':source $MYVIMRC<CR>', {silent = true})
 
     -- Diagnostic keymaps
-    local diagnostic_keymaps = {}
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float)
+    vim.keymap.set('n', 'do', vim.diagnostic.open_float)
 
-    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, 'Go to previous [D]iagnostic')
-    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, "Go to next [D]iagnostic")
     -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, "Open Diagnostics")
     -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,  "Open Diagnostics")
 end
