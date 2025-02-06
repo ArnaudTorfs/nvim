@@ -1,6 +1,7 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.opt.termguicolors = true
 
 require("plugins").setup()
 require("options").setup()
@@ -65,6 +66,21 @@ cmp.setup {
         {name = 'path'}
     }
 }
+
+function RunProcessingSketch()
+    local current_file = vim.fn.expand('%:p')
+    local sketch_dir = vim.fn.expand('%:p:h')
+    vim.cmd('!processing-java --sketch=' .. sketch_dir .. ' --run')
+end
+
+vim.api.nvim_set_keymap('n', '<leader>rp', ':lua RunProcessingSketch()<CR>', {noremap = true, silent = true})
+vim.filetype.add({
+  extension = {
+    pde = "Java",
+  },
+})
+
+
 -- My plugins
 require("myplugin").attach_to_log_files()
 -- The line beneath this is called `modeline`. See `:help modeline`

@@ -1,43 +1,70 @@
 local M = {}
+local dap = require('dap')
 
 function M.setup()
-    local dap = require('dap')
+  dap.adapters.netcoredbg       = {
+    type = 'executable',
+    command = '/Users/arnaud/.local/share/nvim/mason/bin/netcoredbg',
+    args = { '--interpreter=vscode' }
+  }
 
-    dap.adapters.coreclr = {
-        type = 'executable',
-        command = '/home/arnaud/.local/share/nvim/mason/bin/netcoredbg',
-        args = {'--interpreter=vscode'}
-    }
+  vim.g.dotnet_build_project = function()
+    local default_path = vim.fn.getcwd() .. '/'
+    if vim.g['dotnet_last_proj_path'] ~= nil then
+      default_path = vim.g['dotnet_last_proj_path']
+    end
+    local path = vim.fn.input('Path to your *proj file', default_path, 'file')
+    vim.g['dotnet_last_proj_path'] = path
+    -- local cmd = 'dotnet build -c Debug ' .. path .. ' > /dev/null'
+    local cmd = 'dotnet build -c Debug ' .. path .. ' > ~/dap.log'
+    print('')
+    print('Cmd to execute: ' .. cmd)
+    local f = os.execute(cmd)
+    if f == 0 then
+      print('\nBuild: ✔️ ')
+    else
+      print('\nBuild: ❌ (code: ' .. f .. ')')
+    end
+  end
 
-    dap.configurations.cs = {
-        {
-            type = "coreclr",
-            name = "launch - netcoredbg",
-            request = "launch",
-            program = function()
-                local utils = require("utils")
-                local projectRootDir = vim.fn.getcwd()
-                local file = projectRootDir .. "/settings.json"
-                local lines = utils.GetFileContent(file)
-                local json = vim.json.decode(lines)
-                return json["debugExecutable"]
-            end,
-            env = "ASPNETCORE_ENVIRONMENT=Development",
-            args = {
-                "/p:EnvironmentName=Development", -- this is a msbuild jk
-                --  this is set via environment variable ASPNETCORE_ENVIRONMENT=Development
-                "--urls=http://localhost:5180", "--environment=Development"
-            }
-            -- args = function()
-            --   local utils = require("utils")
-            --   local projectRootDir = vim.fn.getcwd()
-            --   local file = projectRootDir .. "/settings.json"
-            --   local lines = utils.GetFileContent(file)
-            --   local json = vim.json.decode(lines)
-            --   return { json["args"] }
-            -- end,
-        }
-    }
+  vim.g.dotnet_get_dll_path  = function()
+    local request = function()
+      return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end
+
+    if vim.g['dotnet_last_dll_path'] == nil then
+      vim.g['dotnet_last_dll_path'] = request()
+    else
+      if vim.fn.confirm('Do you want to change the path to dll?\n' .. vim.g['dotnet_last_dll_path'], '&yes\n&no', 2) == 1 then
+        vim.g['dotnet_last_dll_path'] = request()
+      end
+    end
+
+    return vim.g['dotnet_last_dll_path']
+  end
+
+  local config               = {
+    {
+      type = "netcoredbg",
+      name = "launch - netcoredbg",
+      request = "launch",
+      program = function()
+        if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+          vim.g.dotnet_build_project()
+        end
+        return './bin/Debug/net8.0/temp'
+        -- return '/Users/arnaud/Documents/Source/DAD_SAAS/DockerEnvironement/api/DAD_Solution.API/bin/Debug/net8.0/DAD_Solution.API.dll'
+        -- return vim.g.dotnet_get_dll_path()
+      end,
+      options = {
+        log_file = "$HOME/dap.log",
+        log_level = "TRACE"
+      },
+    },
+  }
+
+  dap.configurations.cs      = config
+  dap.configurations.fsharp  = config
 end
 
 return M

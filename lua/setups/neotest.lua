@@ -38,7 +38,7 @@ local function setKeymaps()
     }
     whichkey.register(mapping, {
         mode = {"n"},
-        prefix = "",
+        prefix = "T",
         buffer = nil,
         silent = true,
         noremap = true,
