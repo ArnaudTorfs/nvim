@@ -4,8 +4,8 @@ require('telescope').setup {
     defaults = {mappings = {i = {['<C-u>'] = false, ['<C-d>'] = false}}},
     pickers = {
         find_files = {
-            no_ignore = true,
             follow = true,
+            no_ignore = false,
             hidden = true,
             file_ignore_patterns = {
                 "node_modules", "bin", "obj", "Migrations", ".git",

@@ -10,8 +10,6 @@ local function get_filename()
     return filename:gsub("%.rs$", "")
 end
 
-print("RUST")
-
 return {
     s("fn", {
         t("fn "),
