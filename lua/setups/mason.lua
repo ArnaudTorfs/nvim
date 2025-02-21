@@ -4,8 +4,6 @@ function M.setup()
     -- LSP settings.
     -- This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
-        print("Attached to buffer:", bufnr)
-
         -- Helper function to define LSP-related key mappings
         local nmap = function(keys, func, desc)
             if desc then desc = 'LSP: ' .. desc end

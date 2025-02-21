@@ -2,7 +2,6 @@ local M = {}
 
 function M.setup()
     local dap = require "dap"
-    print("dap");
     -- Define a custom command :LaunchOSV
     vim.api.nvim_create_user_command("LaunchOSV", function()
         require("osv").launch({port = 8086})
