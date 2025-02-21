@@ -38,11 +38,8 @@ function M.setup()
                 })
             end,
             dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }
-        }, -- Git related plugins
-        {
-            'tpope/vim-fugitive',
-            config = function() require("setups.fugitive").setup() end
-        }, 'tpope/vim-rhubarb', 'lewis6991/gitsigns.nvim',       -- Themes
+        },
+        'tpope/vim-rhubarb', 'lewis6991/gitsigns.nvim',          -- Themes
         "ellisonleao/gruvbox.nvim", "folke/tokyonight.nvim",     -- Status line
         'nvim-lualine/lualine.nvim',                             -- Indentation guides
         { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' }, -- Commenting
