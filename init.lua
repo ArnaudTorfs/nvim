@@ -17,7 +17,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*'
 })
 
-
 -- Setup Neovim lua configuration
 require('neodev').setup()
 --
@@ -73,13 +72,9 @@ function RunProcessingSketch()
     vim.cmd('!processing-java --sketch=' .. sketch_dir .. ' --run')
 end
 
-vim.api.nvim_set_keymap('n', '<leader>rp', ':lua RunProcessingSketch()<CR>', {noremap = true, silent = true})
-vim.filetype.add({
-  extension = {
-    pde = "Java",
-  },
-})
-
+vim.api.nvim_set_keymap('n', '<leader>rp', ':lua RunProcessingSketch()<CR>',
+                        {noremap = true, silent = true})
+vim.filetype.add({extension = {pde = "Java"}})
 
 -- My plugins
 require("myplugin").attach_to_log_files()

@@ -2,6 +2,12 @@ local M = {}
 
 function M.setup()
     local dap = require "dap"
+    print("dap");
+    -- Define a custom command :LaunchOSV
+    vim.api.nvim_create_user_command("LaunchOSV", function()
+        require("osv").launch({port = 8086})
+    end, {desc = "Launch osv DAP server on port 8086"})
+
     dap.configurations.lua = {
         {
             type = "nlua",
@@ -13,7 +19,7 @@ function M.setup()
                 return "127.0.0.1"
             end,
             port = function()
-                local val = tonumber(vim.fn.input("Port: ", "54321"))
+                local val = tonumber(vim.fn.input("Port: ", "8086"))
                 assert(val, "Please provide a port number")
                 return val
             end

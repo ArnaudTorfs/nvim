@@ -10,8 +10,8 @@ function M.setup()
     local mainKeymaps = {
         ["<F3>"] = {"<cmd>lua require'dap'.disconnect()<cr>", "Disconnect"},
         ["<F5>"] = {"<cmd>lua require'dap'.continue()<cr>", "Start / Continue"},
-        ["<F7>"] = {"<cmd>lua require'dap'.step_into()<cr>", "Step Into"},
-        ["<F8>"] = {"<cmd>lua require'dap'.step_over()<cr>", "Step Over"},
+        ["<F11>"] = {"<cmd>lua require'dap'.step_into()<cr>", "Step Into"},
+        ["<F10>"] = {"<cmd>lua require'dap'.step_over()<cr>", "Step Over"},
         ["<F9>"] = {
             "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint"
         }

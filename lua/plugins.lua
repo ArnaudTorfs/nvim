@@ -19,10 +19,8 @@ function M.setup()
             'neovim/nvim-lspconfig',
             dependencies = {
                 -- Automatically install LSPs to stdpath for neovim
-                'williamboman/mason.nvim',
-                'williamboman/mason-lspconfig.nvim',
-                "mfussenegger/nvim-lint",
-                "rshkarin/mason-nvim-lint",
+                'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
+                "mfussenegger/nvim-lint", "rshkarin/mason-nvim-lint",
 
                 -- Useful status updates for LSP
                 'j-hui/fidget.nvim',
@@ -31,20 +29,20 @@ function M.setup()
                 'folke/neodev.nvim'
             }
         }, { -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip'
-        }
-    }, { -- Highlight, edit, and navigate code
-        'nvim-treesitter/nvim-treesitter',
-        build = function()
-            pcall(require('nvim-treesitter.install').update {
-                with_sync = true
-            })
-        end,
-        dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }
-    }, -- Git related plugins
+            'hrsh7th/nvim-cmp',
+            dependencies = {
+                'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip',
+                'saadparwaiz1/cmp_luasnip'
+            }
+        }, { -- Highlight, edit, and navigate code
+            'nvim-treesitter/nvim-treesitter',
+            build = function()
+                pcall(require('nvim-treesitter.install').update {
+                    with_sync = true
+                })
+            end,
+            dependencies = {'nvim-treesitter/nvim-treesitter-textobjects'}
+        }, -- Git related plugins
         {
             'tpope/vim-fugitive',
             config = function() require("setups.fugitive").setup() end
@@ -52,7 +50,7 @@ function M.setup()
 
         "ellisonleao/gruvbox.nvim", "folke/tokyonight.nvim",
         'nvim-lualine/lualine.nvim',
-        { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' },
+        {'lukas-reineke/indent-blankline.nvim', main = 'ibl'},
 
         'numToStr/Comment.nvim', 'tpope/vim-sleuth',
 
@@ -60,7 +58,7 @@ function M.setup()
         {
             'nvim-telescope/telescope.nvim',
             branch = '0.1.x',
-            dependencies = { 'nvim-lua/plenary.nvim' }
+            dependencies = {'nvim-lua/plenary.nvim'}
         },
 
         -- Fuzzy Finder Algorithm which dependencies local dependencies to be built. Only load if `make` is available
@@ -70,45 +68,45 @@ function M.setup()
             cond = vim.fn.executable 'make' == 1
         }, -- logfiles related:
         'mtdl9/vim-log-highlighting', {
-        "Pocco81/auto-save.nvim",
-        config = function()
-            require("auto-save").setup {
-                -- your config goes here
-                -- or just leave it empty :)
-            }
-        end
-    }, {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    }, {
-        "folke/which-key.nvim",
-        config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            -- require("which-key").setup {
-            --
-            -- }
-        end
-    }, -- Debugging
+            "Pocco81/auto-save.nvim",
+            config = function()
+                require("auto-save").setup {
+                    -- your config goes here
+                    -- or just leave it empty :)
+                }
+            end
+        }, {
+            "kylechui/nvim-surround",
+            version = "*", -- Use for stability; omit to use `main` branch for the latest features
+            event = "VeryLazy",
+            config = function()
+                require("nvim-surround").setup({
+                    -- Configuration here, or leave empty to use defaults
+                })
+            end
+        }, {
+            "folke/which-key.nvim",
+            config = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+                -- require("which-key").setup {
+                --
+                -- }
+            end
+        }, -- Debugging
         {
             "mfussenegger/nvim-dap",
             lazy = true,
             event = "BufReadPre",
-            module = { "dap" },
+            module = {"dap"},
             dependencies = {
                 "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui",
                 "nvim-dap-python", "which-key.nvim", "Pocco81/DAPInstall.nvim",
                 "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui",
                 "mfussenegger/nvim-dap-python",
                 "nvim-telescope/telescope-dap.nvim",
-                { "leoluz/nvim-dap-go",                module = "dap-go" },
-                { "jbyuki/one-small-step-for-vimkind", module = "osv" }
+                {"leoluz/nvim-dap-go", module = "dap-go"},
+                {"jbyuki/one-small-step-for-vimkind", module = "osv"}
             },
             config = function() require("setups.dap").setup() end
         }, 'duane9/nvim-rg', -- project config
@@ -119,22 +117,20 @@ function M.setup()
                     project_dir = vim.fn.getcwd()
                 })
             end
-        },
-        {
+        }, {
             "Cliffback/netcoredbg-macOS-arm64.nvim",
-            dependencies = { "mfussenegger/nvim-dap" },
+            dependencies = {"mfussenegger/nvim-dap"},
             config = function()
                 require('netcoredbg-macOS-arm64').setup(require('dap'))
             end
-        },
-        {
+        }, {
             "L3MON4D3/LuaSnip",
             version = "v2.*",
             build = "make install_jsregexp",
             config = function()
                 require("luasnip.loaders.from_vscode").lazy_load()
                 require("luasnip.loaders.from_lua").load({
-                    paths = { "~/.config/nvim/lua/snippets/" }
+                    paths = {"~/.config/nvim/lua/snippets/"}
                 })
             end
         }, -- startup
@@ -143,12 +139,12 @@ function M.setup()
             dependencies = {
                 "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
             },
-            config = function() require "startup".setup() end
+            config = function() require"startup".setup() end
         }, {
-        "ThePrimeagen/harpoon",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function() require("setups.harpoon").setup() end
-    }, -- {
+            "ThePrimeagen/harpoon",
+            dependencies = {"nvim-lua/plenary.nvim"},
+            config = function() require("setups.harpoon").setup() end
+        }, -- {
         -- 	"epwalsh/obsidian.nvim",
         -- 	config = function()
         -- 		require("setups.obsidian").setup()
@@ -163,105 +159,95 @@ function M.setup()
                 require("flutter-tools").setup {} -- use defaults
             end
         }, {
-        "justinmk/vim-sneak",
-        config = function() require("setups.sneak").setup() end
-    }, {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons' -- optional
-        },
-        config = function() require("setups.nvimtree").setup() end
-    }, {
-        "nvim-neotest/neotest",
-        lazy = false,
-        dependencies = {
-            "nvim-neotest/nvim-nio", "vim-test/vim-test",
-            "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-neotest/neotest-python", "nvim-neotest/neotest-plenary",
-            "nvim-neotest/neotest-vim-test", "rouge8/neotest-rust",
-            'stevearc/overseer.nvim', "plenary.nvim", "nvim-treesitter",
-            "FixCursorHold.nvim", "neotest-python", "neotest-plenary",
-            "neotest-vim-test", "neotest-rust", "vim-test", "overseer.nvim",
-            "nvim-neotest/neotest-go", "Issafalcon/neotest-dotnet"
-        },
-        cmd = {
-            "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"
-        },
-        config = function() require("setups.neotest").setup() end,
-        enabled = true
-    }, {
-        'simrat39/rust-tools.nvim',
-        config = function() require("setups.rusttools").setup() end
-    },
-        {
+            "justinmk/vim-sneak",
+            config = function() require("setups.sneak").setup() end
+        }, {
+            'nvim-tree/nvim-tree.lua',
+            dependencies = {
+                'nvim-tree/nvim-web-devicons' -- optional
+            },
+            config = function() require("setups.nvimtree").setup() end
+        }, {
+            "nvim-neotest/neotest",
+            lazy = false,
+            dependencies = {
+                "nvim-neotest/nvim-nio", "vim-test/vim-test",
+                "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+                "antoinemadec/FixCursorHold.nvim",
+                "nvim-neotest/neotest-python", "nvim-neotest/neotest-plenary",
+                "nvim-neotest/neotest-vim-test", "rouge8/neotest-rust",
+                'stevearc/overseer.nvim', "plenary.nvim", "nvim-treesitter",
+                "FixCursorHold.nvim", "neotest-python", "neotest-plenary",
+                "neotest-vim-test", "neotest-rust", "vim-test", "overseer.nvim",
+                "nvim-neotest/neotest-go", "Issafalcon/neotest-dotnet"
+            },
+            cmd = {
+                "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"
+            },
+            config = function() require("setups.neotest").setup() end,
+            enabled = true
+        }, {
+            'simrat39/rust-tools.nvim',
+            config = function() require("setups.rusttools").setup() end
+        }, {
             'norcalli/nvim-colorizer.lua',
-            config = function() require 'colorizer'.setup() end,
-        },
-        { 'ThePrimeagen/vim-be-good' },
-        { 'stevearc/conform.nvim',               opts = {} },
+            config = function() require'colorizer'.setup() end
+        }, {'ThePrimeagen/vim-be-good'}, {'stevearc/conform.nvim', opts = {}},
         {
             'barrett-ruth/live-server.nvim',
             build = 'pnpm add -g live-server',
-            cmd = { 'LiveServerStart', 'LiveServerStop' },
+            cmd = {'LiveServerStart', 'LiveServerStop'},
             config = true
-        },
-        {
-          "yetone/avante.nvim",
-          event = "VeryLazy",
-          lazy = false,
-          version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-          opts = {
-            provider = "openai",
-            openai = {
-              endpoint = "https://api.openai.com/v1",
-              model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-              timeout = 30000, -- timeout in milliseconds
-              temperature = 0, -- adjust if needed
-              max_tokens = 4096,
-              -- reasoning_effort = "high" -- only supported for "o" models
+        }, {
+            "yetone/avante.nvim",
+            event = "VeryLazy",
+            lazy = false,
+            version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+            opts = {
+                provider = "openai",
+                openai = {
+                    endpoint = "https://api.openai.com/v1",
+                    model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+                    timeout = 30000, -- timeout in milliseconds
+                    temperature = 0, -- adjust if needed
+                    max_tokens = 4096
+                    -- reasoning_effort = "high" -- only supported for "o" models
+                }
             },
-          },
-          -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-          build = "make",
-          -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-          dependencies = {
-            "stevearc/dressing.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            --- The below dependencies are optional,
-            "echasnovski/mini.pick", -- for file_selector provider mini.pick
-            "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-            "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-            "ibhagwan/fzf-lua", -- for file_selector provider fzf
-            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
-            {
-              -- support for image pasting
-              "HakonHarnes/img-clip.nvim",
-              event = "VeryLazy",
-              opts = {
-                -- recommended settings
-                default = {
-                  embed_image_as_base64 = false,
-                  prompt_for_file_name = false,
-                  drag_and_drop = {
-                    insert_mode = true,
-                  },
-                  -- required for Windows users
-                  use_absolute_path = true,
-                },
-              },
-            },
-            {
-              -- Make sure to set this up properly if you have lazy=true
-              'MeanderingProgrammer/render-markdown.nvim',
-              opts = {
-                file_types = { "markdown", "Avante" },
-              },
-              ft = { "markdown", "Avante" },
-            },
-          },
+            -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+            build = "make",
+            -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+            dependencies = {
+                "stevearc/dressing.nvim", "nvim-lua/plenary.nvim",
+                "MunifTanjim/nui.nvim",
+                --- The below dependencies are optional,
+                "echasnovski/mini.pick", -- for file_selector provider mini.pick
+                "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+                "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+                "ibhagwan/fzf-lua", -- for file_selector provider fzf
+                "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+                "zbirenbaum/copilot.lua", -- for providers='copilot'
+                {
+                    -- support for image pasting
+                    "HakonHarnes/img-clip.nvim",
+                    event = "VeryLazy",
+                    opts = {
+                        -- recommended settings
+                        default = {
+                            embed_image_as_base64 = false,
+                            prompt_for_file_name = false,
+                            drag_and_drop = {insert_mode = true},
+                            -- required for Windows users
+                            use_absolute_path = true
+                        }
+                    }
+                }, {
+                    -- Make sure to set this up properly if you have lazy=true
+                    'MeanderingProgrammer/render-markdown.nvim',
+                    opts = {file_types = {"markdown", "Avante"}},
+                    ft = {"markdown", "Avante"}
+                }
+            }
         }
         -- { 'sophacles/vim-processing' }
     })

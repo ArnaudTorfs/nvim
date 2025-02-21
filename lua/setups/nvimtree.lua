@@ -13,13 +13,13 @@ function M.setup()
     local keymaps = {
         name = "[T]ree",
         t = {
-            t = { "<cmd>NvimTreeToggle<cr>", "[T]oggle NvimTree" },
-            f = { "<cmd>NvimTreeFocus<cr>", "[F]ocus NvimTree" }
+            t = {"<cmd>NvimTreeToggle<cr>", "[T]oggle NvimTree"},
+            f = {"<cmd>NvimTreeFocus<cr>", "[F]ocus NvimTree"}
         }
     }
 
     whichkey.register(keymaps, {
-        mode = { "n" },
+        mode = {"n"},
         prefix = "<leader>",
         buffer = nil,
         silent = true,
@@ -29,11 +29,9 @@ function M.setup()
 
     require("nvim-tree").setup({
         sort_by = "case_sensitive",
-        renderer = { group_empty = true },
-        filters = { dotfiles = true },
-        update_focused_file = {
-            enable = true,
-        }
+        renderer = {group_empty = true},
+        filters = {dotfiles = true},
+        update_focused_file = {enable = true}
     })
 end
 
