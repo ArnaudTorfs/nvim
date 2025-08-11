@@ -175,20 +175,20 @@ function M.setup()
         lazy = false,
         version = false,
         opts = {
-                provider = "openai",
-                providers = {
-                    openai = {
-                        endpoint = "https://api.openai.com/v1",
-                        model = "gpt-5",
-                        timeout = 30000,
-                        extra_request_body = {
-                          temperature = 1,
-                          max_completion_tokens = 13192, -- Increase this to include reasoning tokens (for reasoning models)
-                          reasoning_effort = "high",
-                        },
-                        max_tokens = 13096
-                    }
+            provider = "openai",
+            providers = {
+                openai = {
+                    endpoint = "https://api.openai.com/v1",
+                    model = "gpt-5",
+                    timeout = 30000,
+                    extra_request_body = {
+                        temperature = 1,
+                        max_completion_tokens = 13192,   -- Increase this to include reasoning tokens (for reasoning models)
+                        reasoning_effort = "high",
+                    },
+                    max_tokens = 13096
                 }
+            }
         },
         build = "make",
         dependencies = {
