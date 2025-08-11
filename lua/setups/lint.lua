@@ -10,3 +10,10 @@ vim.api.nvim_create_autocmd({
 
 vim.keymap.set("n", "<leader>ml", function() require("lint").try_lint() end,
                {desc = "Lint file"})
+
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = {".tmux.conf", "tmux.conf", "*.tmux"},
+  callback = function()
+    vim.bo.filetype = "sh"
+  end,
+})

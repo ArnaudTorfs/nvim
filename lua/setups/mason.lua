@@ -3,7 +3,7 @@ local M = {}
 function M.setup()
     -- LSP settings.
     -- This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(_, bufnr)
+    local on_attach = function(bufnr)
         -- Helper function to define LSP-related key mappings
         local nmap = function(keys, func, desc)
             if desc then desc = 'LSP: ' .. desc end
@@ -49,15 +49,16 @@ function M.setup()
     -- Setup mason-lspconfig to ensure servers are installed
     local mason_lspconfig = require('mason-lspconfig')
 
-    mason_lspconfig.setup_handlers {
-        function(server_name)
-            require('lspconfig')[server_name].setup {
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = servers[server_name]
-            }
-        end
-    }
+    vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+            local bufnr = ev.buf
+            on_attach(bufnr)
+        end,
+    })
+    mason_lspconfig.setup({
+        automatic_installation = true,
+    })
 end
 
 return M

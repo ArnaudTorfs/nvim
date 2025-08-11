@@ -1,5 +1,6 @@
 local M = {}
 local dap = require('dap')
+local ddl_path = '/Users/arnaud/Documents/Source/DAD_SAAS/ContractInsight/ContractInsight/src/API/ContractInsight.API/bin/Debug/net8.0/ContractInsight.API'
 
 function M.setup()
     dap.adapters.netcoredbg = {
@@ -51,10 +52,11 @@ function M.setup()
             name = "launch - netcoredbg",
             request = "launch",
             program = function()
+                print(ddl_path)
                 if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) ==
                     1 then vim.g.dotnet_build_project() end
-                return './bin/Debug/net8.0/temp'
-                -- return '/Users/arnaud/Documents/Source/DAD_SAAS/DockerEnvironement/api/DAD_Solution.API/bin/Debug/net8.0/DAD_Solution.API.dll'
+                -- return './bin/Debug/net8.0/temp'
+                return ddl_path
                 -- return vim.g.dotnet_get_dll_path()
             end,
             options = {log_file = "$HOME/dap.log", log_level = "TRACE"}

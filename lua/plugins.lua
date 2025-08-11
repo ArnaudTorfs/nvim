@@ -175,14 +175,20 @@ function M.setup()
         lazy = false,
         version = false,
         opts = {
-            provider = "openai",
-            openai = {
-                endpoint = "https://api.openai.com/v1",
-                model = "gpt-4o",
-                timeout = 30000,
-                temperature = 0,
-                max_tokens = 4096
-            }
+                provider = "openai",
+                providers = {
+                    openai = {
+                        endpoint = "https://api.openai.com/v1",
+                        model = "gpt-5",
+                        timeout = 30000,
+                        extra_request_body = {
+                          temperature = 1,
+                          max_completion_tokens = 13192, -- Increase this to include reasoning tokens (for reasoning models)
+                          reasoning_effort = "high",
+                        },
+                        max_tokens = 13096
+                    }
+                }
         },
         build = "make",
         dependencies = {
@@ -239,7 +245,7 @@ function M.setup()
             picker = { enabled = true },
             quickfile = { enabled = true },
             scope = { enabled = true },
-            scroll = { enabled = true },
+            -- scroll = { enabled = true },
             statuscolumn = { enabled = true },
             words = { enabled = true },
             styles = {
@@ -254,7 +260,7 @@ function M.setup()
             { "<leader>,",       function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
             { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
             { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
-            { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
+            -- { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
             { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
             -- find
             { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
