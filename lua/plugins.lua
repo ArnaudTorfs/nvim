@@ -183,7 +183,7 @@ function M.setup()
                     timeout = 30000,
                     extra_request_body = {
                         temperature = 1,
-                        max_completion_tokens = 13192,   -- Increase this to include reasoning tokens (for reasoning models)
+                        max_completion_tokens = 13192, -- Increase this to include reasoning tokens (for reasoning models)
                         reasoning_effort = "high",
                     },
                     max_tokens = 13096
@@ -224,14 +224,7 @@ function M.setup()
                 enabled = true,
                 sections = {
                     { section = "header" },
-                    {
-                        pane = 1,
-                        section = "terminal",
-                        cmd = "jq '.projects[\"" ..
-                            vim.fn.getcwd() .. "\"].mark.marks[]?.filename' ~/.local/share/nvim/harpoon.json",
-                        -- height = 9,
-                        padding = 1,
-                    },
+                    { section = "harpoon", title = "Harpoon", icon = " " },
                     { section = "startup" },
                 },
             },
@@ -376,7 +369,6 @@ function M.setup()
                 end,
             })
         end,
-    }
 
     })
 

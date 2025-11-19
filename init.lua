@@ -10,11 +10,11 @@ require("mappings").setup()
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight',
-                                                    {clear = true})
+  { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function() vim.highlight.on_yank() end,
-    group = highlight_group,
-    pattern = '*'
+  callback = function() vim.highlight.on_yank() end,
+  group = highlight_group,
+  pattern = '*'
 })
 
 -- Setup Neovim lua configuration
@@ -32,49 +32,49 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 cmp.setup {
-    snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
-    mapping = cmp.mapping.preset.insert {
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, {'i', 's'}),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, {'i', 's'})
+  snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
+  mapping = cmp.mapping.preset.insert {
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true
     },
-    sources = {
-        {name = 'nvim_lsp'}, {name = 'luasnip'}, {name = 'buffer'},
-        {name = 'path'}
-    }
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' })
+  },
+  sources = {
+    { name = 'nvim_lsp' }, { name = 'luasnip' }, { name = 'buffer' },
+    { name = 'path' }
+  }
 }
 
 function RunProcessingSketch()
-    local current_file = vim.fn.expand('%:p')
-    local sketch_dir = vim.fn.expand('%:p:h')
-    vim.cmd('!processing-java --sketch=' .. sketch_dir .. ' --run')
+  local current_file = vim.fn.expand('%:p')
+  local sketch_dir = vim.fn.expand('%:p:h')
+  vim.cmd('!processing-java --sketch=' .. sketch_dir .. ' --run')
 end
 
 vim.api.nvim_set_keymap('n', '<leader>rp', ':lua RunProcessingSketch()<CR>',
-                        {noremap = true, silent = true})
-vim.filetype.add({extension = {pde = "Java"}})
+  { noremap = true, silent = true })
+vim.filetype.add({ extension = { pde = "Java" } })
 
 -- My plugins
 require("myplugin").attach_to_log_files()
