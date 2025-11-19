@@ -80,3 +80,14 @@ vim.filetype.add({ extension = { pde = "Java" } })
 require("myplugin").attach_to_log_files()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  vim.opt.shell = "powershell.exe"
+  vim.opt.shellcmdflag =
+  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.opt.shellquote = "\""
+  vim.opt.shellxquote = ""
+end
+
+-- Exit terminal mode with ESC
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })

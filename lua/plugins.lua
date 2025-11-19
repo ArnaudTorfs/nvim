@@ -369,6 +369,10 @@ function M.setup()
                 end,
             })
         end,
+    },
+        {
+            { 'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] } }
+        }
 
     })
 
@@ -384,6 +388,7 @@ function M.setup()
     require("mason-nvim-lint").setup()
     require("setups.lint")
     require("setups.conform")
+    require("setups.toggleterm")
 end
 
 return M
