@@ -153,8 +153,10 @@ function M.setup()
         config = function() require("setups.neotest").setup() end,
         enabled = true
     }, {
-        'simrat39/rust-tools.nvim',
-        config = function() require("setups.rusttools").setup() end
+        'mrcjkb/rustaceanvim',
+        version = '^5',
+        lazy = false, -- This plugin is already lazy
+        ft = { 'rust' },
     }, {
         'norcalli/nvim-colorizer.lua',
         config = function() require 'colorizer'.setup() end
@@ -224,7 +226,7 @@ function M.setup()
                 enabled = true,
                 sections = {
                     { section = "header" },
-                    { section = "harpoon", title = "Harpoon", icon = " " },
+                    -- { section = "harpoon", title = "Harpoon", icon = " " },
                     { section = "startup" },
                 },
             },
@@ -389,6 +391,7 @@ function M.setup()
     require("setups.lint")
     require("setups.conform")
     require("setups.toggleterm")
+    require("setups.rustacean")
 end
 
 return M
