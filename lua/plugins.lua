@@ -130,10 +130,6 @@ function M.setup()
         "justinmk/vim-sneak",
         config = function() require("setups.sneak").setup() end
     }, {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function() require("setups.nvimtree").setup() end
-    }, {
         "nvim-neotest/neotest",
         lazy = false,
         dependencies = {
