@@ -67,6 +67,8 @@ function M.setup()
     vim.keymap.set("n", "<leader>l", function()
         cargo_build_term:toggle()
     end, { noremap = true, silent = true })
+
+
 end
 
 return M

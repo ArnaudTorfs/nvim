@@ -156,18 +156,18 @@ function M.setup()
     }, {
         'norcalli/nvim-colorizer.lua',
         config = function() require 'colorizer'.setup() end
-    },
-        { 'ThePrimeagen/vim-be-good' },
-        {
-            'stevearc/conform.nvim',
-            opts = {}
-        },
-        {
-            'barrett-ruth/live-server.nvim',
-            build = 'pnpm add -g live-server',
-            cmd = { 'LiveServerStart', 'LiveServerStop' },
-            config = true
-        }, {
+    }, {
+        'ThePrimeagen/vim-be-good'
+    }, {
+
+        'stevearc/conform.nvim',
+        opts = {}
+    }, {
+        'barrett-ruth/live-server.nvim',
+        build = 'pnpm add -g live-server',
+        cmd = { 'LiveServerStart', 'LiveServerStop' },
+        config = true
+    }, {
         "yetone/avante.nvim",
         event = "VeryLazy",
         lazy = false,
@@ -367,11 +367,12 @@ function M.setup()
                 end,
             })
         end,
-    },
-        {
-            { 'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] } }
-        }
-
+    }, {
+        'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] }
+    }, {
+        'LukasPietzschmann/telescope-tabs',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+    }
     })
 
     require("setups.comment")
@@ -388,6 +389,7 @@ function M.setup()
     require("setups.conform")
     require("setups.toggleterm")
     require("setups.rustacean")
+    require("setups.telescope_tabs")
 end
 
 return M
