@@ -372,6 +372,14 @@ function M.setup()
     }, {
         'LukasPietzschmann/telescope-tabs',
         dependencies = { 'nvim-telescope/telescope.nvim' },
+    }, {
+        "letieu/harpoon-lualine",
+        dependencies = {
+            {
+                "ThePrimeagen/harpoon",
+                branch = "harpoon2",
+            }
+        },
     }
     })
 
