@@ -380,9 +380,10 @@ function M.setup()
                 branch = "harpoon2",
             }
         },
-    }, {
-        "hachy/cmdpalette.nvim"
-    },
+    }, 
+    --     {
+    --     "hachy/cmdpalette.nvim"
+    -- },
     })
 
     require("setups.comment")
@@ -400,7 +401,7 @@ function M.setup()
     require("setups.toggleterm")
     require("setups.rustacean")
     require("setups.telescope_tabs")
-    require("setups.cmdpalette")
+    -- require("setups.cmdpalette")
 end
 
 return M

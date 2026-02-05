@@ -1,3 +1,5 @@
+local lspconfig = require("lspconfig")
+
 -- require 'lspconfig'.lua_ls.setup {
 --     settings = {
 --         Lua = {
@@ -8,6 +10,26 @@
 --         }
 --     }
 -- }
-require'lspconfig'.angularls.setup {}
+lspconfig.angularls.setup {}
 
-require('lspconfig').clangd.setup {}
+lspconfig.clangd.setup {}
+
+local util = require("lspconfig.util")
+
+-- lspconfig.ts_ls.setup({
+--   single_file_support = false,
+--   root_dir = function(fname)
+--     -- If angular.json exists → disable ts_ls
+--     if util.root_pattern("angular.json")(fname) then
+--       return nil
+--     end
+--     return util.root_pattern("package.json", "tsconfig.json", ".git")(fname)
+--   end,
+-- })
+
+lspconfig.angularls.setup({
+  filetypes = {
+    "html",
+    "htmlangular",
+  },
+})

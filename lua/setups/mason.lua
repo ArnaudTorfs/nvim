@@ -30,8 +30,19 @@ function M.setup()
 
         -- Create a command `:Format` local to the LSP buffer
         vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-            vim.lsp.buf.format()
-        end, { desc = 'Format current buffer with LSP' })
+            local ft = vim.bo[bufnr].filetype
+            if ft == "html" or ft == "htmlangular" then
+                -- Use conform.nvim for Angular HTML files
+                require("conform").format({
+                    bufnr = bufnr,
+                    async = true,
+                    lsp_fallback = false
+                })
+            else
+                -- Use LSP format for all other files
+                vim.lsp.buf.format({ bufnr = bufnr })
+            end
+        end, { desc = 'Format current buffer' })
     end
 
     local servers = {
@@ -48,6 +59,7 @@ function M.setup()
 
     -- Setup mason-lspconfig to ensure servers are installed
     local mason_lspconfig = require('mason-lspconfig')
+    local lspconfig = require("lspconfig")
 
     vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -58,6 +70,17 @@ function M.setup()
     })
     mason_lspconfig.setup({
         automatic_installation = true,
+        handlers = {
+            function(server)
+                lspconfig[server].setup({})
+            end,
+
+            angularls = function()
+                lspconfig.angularls.setup({
+                    filetypes = { "html", "htmlangular" },
+                })
+            end,
+        }
     })
 end
 
