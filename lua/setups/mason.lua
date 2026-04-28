@@ -45,21 +45,11 @@ function M.setup()
         end, { desc = 'Format current buffer' })
     end
 
-    local servers = {
-        sumneko_lua = {
-            Lua = {
-                workspace = { checkThirdParty = false },
-                telemetry = { enable = false }
-            }
-        }
-    }
-
     -- Setup mason to manage external tooling
     require('mason').setup()
 
     -- Setup mason-lspconfig to ensure servers are installed
     local mason_lspconfig = require('mason-lspconfig')
-    local lspconfig = require("lspconfig")
 
     vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -72,13 +62,14 @@ function M.setup()
         automatic_installation = true,
         handlers = {
             function(server)
-                lspconfig[server].setup({})
+                vim.lsp.enable(server)
             end,
 
             angularls = function()
-                lspconfig.angularls.setup({
+                vim.lsp.config('angularls', {
                     filetypes = { "html", "htmlangular" },
                 })
+                vim.lsp.enable('angularls')
             end,
         }
     })

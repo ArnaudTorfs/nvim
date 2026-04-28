@@ -1,35 +1,15 @@
-local lspconfig = require("lspconfig")
+vim.lsp.config('angularls', {
+  filetypes = { "html", "htmlangular" },
+})
 
--- require 'lspconfig'.lua_ls.setup {
---     settings = {
---         Lua = {
---             diagnostics = {
---                 -- Get the language server to recognize the `vim` global
---                 globals = { 'vim' }
---             }
---         }
---     }
--- }
-lspconfig.angularls.setup {}
+vim.lsp.enable('angularls')
+vim.lsp.enable('clangd')
 
-lspconfig.clangd.setup {}
-
-local util = require("lspconfig.util")
-
--- lspconfig.ts_ls.setup({
---   single_file_support = false,
---   root_dir = function(fname)
---     -- If angular.json exists → disable ts_ls
---     if util.root_pattern("angular.json")(fname) then
---       return nil
---     end
---     return util.root_pattern("package.json", "tsconfig.json", ".git")(fname)
+-- vim.lsp.config('ts_ls', {
+--   root_dir = function(bufnr, on_dir)
+--     local fname = vim.api.nvim_buf_get_name(bufnr)
+--     local util = require("lspconfig.util")
+--     if util.root_pattern("angular.json")(fname) then return on_dir(nil) end
+--     on_dir(util.root_pattern("package.json", "tsconfig.json", ".git")(fname))
 --   end,
 -- })
-
-lspconfig.angularls.setup({
-  filetypes = {
-    "html",
-    "htmlangular",
-  },
-})
