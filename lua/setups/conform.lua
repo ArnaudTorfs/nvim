@@ -1,6 +1,25 @@
 require("conform").setup({
-  formatters_by_ft = {
-    swift = { "swiftformat" },
-    htmlangular = { "prettier" }
-  }
+    formatters_by_ft = {
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        cs = { "csharpier" },
+        go = { "gofumpt", "goimports" },
+        html = { "prettierd" },
+        htmlangular = { "prettierd" },
+        java = { "google-java-format" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        json = { "prettierd" },
+        lua = { "luaformatter" },
+        markdown = { "prettierd" },
+        php = { "phpcs" },
+        python = { "black" },
+        rust = { "rustfmt" },
+        sh = { "beautysh" },
+        sql = { "sql-formatter" },
+        swift = { "swiftformat" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        yaml = { "yamlfmt" },
+    },
 })

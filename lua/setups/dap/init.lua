@@ -2,6 +2,7 @@ local M = {}
 
 local function configure()
     require("mason-nvim-dap").setup({
+        ensure_installed = { "codelldb", "netcoredbg" },
         automatic_installation = true,
     })
 

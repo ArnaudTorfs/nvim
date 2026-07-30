@@ -40,7 +40,24 @@ function M.setup()
     end
 
     -- Setup mason to manage external tooling
-    require('mason').setup()
+    require('mason').setup({
+        ensure_installed = {
+            -- Formatters
+            "beautysh",
+            "black",
+            "clang-format",
+            "csharpier",
+            "gofumpt",
+            "goimports",
+            "google-java-format",
+            "luaformatter",
+            "prettierd",
+            "rustfmt",
+            "sql-formatter",
+            "swiftformat",
+            "yamlfmt",
+        },
+    })
 
     -- Setup mason-lspconfig to ensure servers are installed
     local mason_lspconfig = require('mason-lspconfig')
