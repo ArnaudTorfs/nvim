@@ -53,6 +53,27 @@ function M.setup()
         end,
     })
     mason_lspconfig.setup({
+        ensure_installed = {
+            "angularls",
+            "bashls",
+            "clangd",
+            "csharp_ls",
+            "cssls",
+            "cssmodules_ls",
+            "emmet_ls",
+            "glsl_analyzer",
+            "gopls",
+            "html",
+            "jdtls",
+            "jsonls",
+            "lua_ls",
+            "neocmake",
+            "phpactor",
+            "pylsp",
+            "superhtml",
+            "ts_ls",
+            "yamlls",
+        },
         automatic_installation = true,
         handlers = {
             function(server)
