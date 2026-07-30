@@ -37,9 +37,6 @@ function M.setup()
         "<cmd>lua require('filetypes.cpp').switchHeaderFile()<cr>",
         { silent = false })
 
-    -- keymap.set('n', '<leader>K', 'oTODO:<esc>VgcA', { silent = true, noremap=true })
-    keymap.set('n', '<leader>K', '', { silent = true, noremap = true })
-
     keymap.set('n', '<F12>', ':source $MYVIMRC<CR>', { silent = true })
 
     -- Diagnostic keymaps
@@ -48,25 +45,6 @@ function M.setup()
     vim.keymap.set('n', 'do', vim.diagnostic.open_float)
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
-    -- vim.keymap.set('n', '<leader>bn', vim.diagnostic.open_float, "Open Diagnostics")
-    -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,  "Open Diagnostics")
-
-    -- local Terminal = require("snacks.terminal").Terminal
-
-    -- local cargo_build_term = Terminal:new({
-    --     cmd = "cargo build",
-    --     direction = "vertical", -- or "float", "horizontal", etc.
-    --     close_on_exit = true,
-    --     on_exit = function(term, exit_code)
-    --         if exit_code == 0 then
-    --             term:close()
-    --         end
-    --     end,
-    -- })
-
-    vim.keymap.set("n", "<leader>l", function()
-        cargo_build_term:toggle()
-    end, { noremap = true, silent = true })
 end
 
 return M

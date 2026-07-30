@@ -4,3 +4,4 @@ plugged
 settings.json
 .luarc.json
 lazy-lock.json
+.netcoredbg_hist
