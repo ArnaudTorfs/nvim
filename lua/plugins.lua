@@ -86,6 +86,8 @@ function M.setup()
             end
         }, {
         "Cliffback/netcoredbg-macOS-arm64.nvim",
+        ft = { "cs" },
+        cond = vim.loop.os_uname().sysname == "Darwin" and vim.loop.os_uname().machine == "arm64",
         dependencies = { "mfussenegger/nvim-dap" },
         config = function()
             require('netcoredbg-macOS-arm64').setup(require('dap'))
@@ -108,6 +110,7 @@ function M.setup()
             config = function() require("setups.harpoon").setup() end
         }, {
         'akinsho/flutter-tools.nvim',
+        ft = { "dart" },
         dependencies = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim' },
         config = function() require("flutter-tools").setup {} end
     }, {
