@@ -136,15 +136,18 @@ function M.setup()
         "nvim-neotest/neotest",
         lazy = false,
         dependencies = {
-            "nvim-neotest/nvim-nio", "vim-test/vim-test",
-            "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+            "nvim-neotest/nvim-nio",
+            "vim-test/vim-test",
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
             "antoinemadec/FixCursorHold.nvim",
-            "nvim-neotest/neotest-python", "nvim-neotest/neotest-plenary",
-            "nvim-neotest/neotest-vim-test", "rouge8/neotest-rust",
-            'stevearc/overseer.nvim', "plenary.nvim", "nvim-treesitter",
-            "FixCursorHold.nvim", "neotest-python", "neotest-plenary",
-            "neotest-vim-test", "neotest-rust", "vim-test", "overseer.nvim",
-            "nvim-neotest/neotest-go", "Issafalcon/neotest-dotnet"
+            "nvim-neotest/neotest-python",
+            "nvim-neotest/neotest-plenary",
+            "nvim-neotest/neotest-vim-test",
+            "rouge8/neotest-rust",
+            "stevearc/overseer.nvim",
+            "nvim-neotest/neotest-go",
+            "Issafalcon/neotest-dotnet",
         },
         cmd = {
             "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit"
