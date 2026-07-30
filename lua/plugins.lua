@@ -56,8 +56,11 @@ function M.setup()
             cond = vim.fn.executable 'make' == 1
         }, -- Logfiles related
         'mtdl9/vim-log-highlighting', {
-        "Pocco81/auto-save.nvim",
-        config = function() require("auto-save").setup {} end
+        "okuuva/auto-save.nvim",
+        version = "*",
+        cmd = "ASToggle",
+        event = { "InsertLeave", "TextChanged" },
+        opts = {}
     }, {
         "kylechui/nvim-surround",
         version = "*",
