@@ -309,10 +309,7 @@ function M.setup()
                 branch = "harpoon2",
             }
         },
-    }, 
-    --     {
-    --     "hachy/cmdpalette.nvim"
-    -- },
+    },
     })
 
     require("setups.comment")

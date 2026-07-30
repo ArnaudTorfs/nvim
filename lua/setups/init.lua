@@ -1,7 +1,0 @@
-require("comment")
-require("gitsigns")
--- require("lsp")
-require("lualine")
-require("mason")
-require("neodev")
--- require("treesitter")
