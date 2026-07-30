@@ -324,8 +324,6 @@ function M.setup()
             })
         end,
     }, {
-        'akinsho/toggleterm.nvim', version = "*", opts = { --[[ things you want to change go here]] }
-    }, {
         'LukasPietzschmann/telescope-tabs',
         dependencies = { 'nvim-telescope/telescope.nvim' },
     }, {
@@ -354,7 +352,6 @@ function M.setup()
     require("mason-nvim-lint").setup()
     require("setups.lint")
     require("setups.conform")
-    require("setups.toggleterm")
     require("setups.rustacean")
     require("setups.telescope_tabs")
     -- require("setups.cmdpalette")
