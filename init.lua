@@ -28,8 +28,6 @@ vim.api.nvim_set_keymap('n', '<leader>rp', ':lua RunProcessingSketch()<CR>',
   { noremap = true, silent = true })
 vim.filetype.add({ extension = { pde = "Java" } })
 
--- My plugins
-require("myplugin").attach_to_log_files()
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
