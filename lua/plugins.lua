@@ -43,17 +43,7 @@ function M.setup()
         "ellisonleao/gruvbox.nvim", "folke/tokyonight.nvim",     -- Status line
         'nvim-lualine/lualine.nvim',                             -- Commenting
         'numToStr/Comment.nvim',                                 -- Detect tabstop and shiftwidth automatically
-        'tpope/vim-sleuth',                                      -- Fuzzy Finder
-        {
-            'nvim-telescope/telescope.nvim',
-            branch = '0.1.x',
-            dependencies = { 'nvim-lua/plenary.nvim' }
-        }, -- Fuzzy Finder Algorithm
-        {
-            'nvim-telescope/telescope-fzf-native.nvim',
-            build = 'make',
-            cond = vim.fn.executable 'make' == 1
-        }, {
+        'tpope/vim-sleuth', {
         "okuuva/auto-save.nvim",
         version = "*",
         cmd = "ASToggle",
@@ -82,7 +72,6 @@ function M.setup()
                 "rcarriga/nvim-dap-ui",
                 "mfussenegger/nvim-dap-python",
                 "which-key.nvim",
-                "nvim-telescope/telescope-dap.nvim",
                 { "leoluz/nvim-dap-go",                module = "dap-go" },
                 { "jbyuki/one-small-step-for-vimkind", module = "osv" }
             },
@@ -111,15 +100,8 @@ function M.setup()
                 paths = { "~/.config/nvim/lua/snippets/" }
             })
         end
-    }, -- Startup
-        -- {
-        --     "startup-nvim/startup.nvim",
-        --     dependencies = {
-        --         "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"
-        --     },
-        --     config = function() require "startup".setup() end
-        -- },
-        {
+    }, {
+        -- Harpoon
             "ThePrimeagen/harpoon",
             branch = "harpoon2",
             dependencies = { "nvim-lua/plenary.nvim" },
@@ -320,9 +302,6 @@ function M.setup()
             })
         end,
     }, {
-        'LukasPietzschmann/telescope-tabs',
-        dependencies = { 'nvim-telescope/telescope.nvim' },
-    }, {
         "letieu/harpoon-lualine",
         dependencies = {
             {
@@ -342,15 +321,12 @@ function M.setup()
     require("setups.treesitter")
     require("setups.mason").setup()
     require("setups.lazydev")
-    require("setups.telescope")
     require("setups.luasnip")
     require("setups.lspconfig")
     require("mason-nvim-lint").setup()
     require("setups.lint")
     require("setups.conform")
     require("setups.rustacean")
-    require("setups.telescope_tabs")
-    -- require("setups.cmdpalette")
 end
 
 return M
