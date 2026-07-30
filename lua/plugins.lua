@@ -358,6 +358,12 @@ function M.setup()
                 branch = "harpoon2",
             }
         },
+    }, {
+        "epwalsh/obsidian.nvim",
+        version = "*",
+        ft = { "markdown" },
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function() require("setups.obsidian").setup() end,
     },
     })
 
