@@ -20,7 +20,7 @@ function M.setup()
             dependencies = {
                 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
                 "mfussenegger/nvim-lint", "rshkarin/mason-nvim-lint",
-                'j-hui/fidget.nvim', 'folke/neodev.nvim'
+                'j-hui/fidget.nvim', 'folke/lazydev.nvim'
             }
         }, -- Autocompletion
         {
@@ -347,7 +347,7 @@ function M.setup()
     require("setups.lualine")
     require("setups.treesitter")
     require("setups.mason").setup()
-    require("setups.neodev")
+    require("setups.lazydev")
     require("setups.telescope")
     require("setups.luasnip")
     require("setups.lspconfig")
