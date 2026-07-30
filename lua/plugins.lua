@@ -130,9 +130,6 @@ function M.setup()
         dependencies = { 'nvim-lua/plenary.nvim', 'stevearc/dressing.nvim' },
         config = function() require("flutter-tools").setup {} end
     }, {
-        "justinmk/vim-sneak",
-        config = function() require("setups.sneak").setup() end
-    }, {
         "nvim-neotest/neotest",
         lazy = false,
         dependencies = {
