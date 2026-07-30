@@ -160,9 +160,6 @@ function M.setup()
         'norcalli/nvim-colorizer.lua',
         config = function() require 'colorizer'.setup() end
     }, {
-        'ThePrimeagen/vim-be-good'
-    }, {
-
         'stevearc/conform.nvim',
         opts = {}
     }, {
