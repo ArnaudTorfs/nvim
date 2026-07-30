@@ -375,7 +375,22 @@ function M.setup()
     require("setups.lazydev")
     require("setups.luasnip")
     require("setups.lspconfig")
-    require("mason-nvim-lint").setup()
+    require("mason-nvim-lint").setup({
+        ensure_installed = {
+            "cpplint",
+            "eslint_d",
+            "golangci-lint",
+            "hadolint",
+            "jsonlint",
+            "markdownlint",
+            "phpcs",
+            "phpstan",
+            "shellcheck",
+            "tflint",
+            "vale",
+            "yamllint",
+        },
+    })
     require("setups.lint")
     require("setups.conform")
     require("setups.rustacean")
