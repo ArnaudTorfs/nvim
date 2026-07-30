@@ -1,10 +1,9 @@
 local M = {}
 
 local function configure()
-    -- local dap_install = require "dap-install"
-    -- dap_install.setup {
-    --   installation_path = vim.fn.stdpath "data" .. "/dapinstall/",
-    -- }
+    require("mason-nvim-dap").setup({
+        automatic_installation = true,
+    })
 
     local dap_breakpoint = {
         error = {

@@ -79,10 +79,11 @@ function M.setup()
             event = "BufReadPre",
             module = { "dap" },
             dependencies = {
-                "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui",
-                "nvim-dap-python", "which-key.nvim", "Pocco81/DAPInstall.nvim",
-                "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui",
+                "jay-babu/mason-nvim-dap.nvim",
+                "theHamsta/nvim-dap-virtual-text",
+                "rcarriga/nvim-dap-ui",
                 "mfussenegger/nvim-dap-python",
+                "which-key.nvim",
                 "nvim-telescope/telescope-dap.nvim",
                 { "leoluz/nvim-dap-go",                module = "dap-go" },
                 { "jbyuki/one-small-step-for-vimkind", module = "osv" }
