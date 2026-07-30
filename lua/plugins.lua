@@ -156,9 +156,6 @@ function M.setup()
         lazy = false, -- This plugin is already lazy
         ft = { 'rust' },
     }, {
-        'norcalli/nvim-colorizer.lua',
-        config = function() require 'colorizer'.setup() end
-    }, {
         'stevearc/conform.nvim',
         opts = {}
     }, {
