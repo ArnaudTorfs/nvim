@@ -88,7 +88,7 @@ function M.setup()
                 { "jbyuki/one-small-step-for-vimkind", module = "osv" }
             },
             config = function() require("setups.dap").setup() end
-        }, 'duane9/nvim-rg', -- Project config
+        }, -- Project config
         {
             'windwp/nvim-projectconfig',
             config = function()
