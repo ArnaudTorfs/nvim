@@ -41,8 +41,7 @@ function M.setup()
         },
         'tpope/vim-rhubarb', 'lewis6991/gitsigns.nvim',          -- Themes
         "ellisonleao/gruvbox.nvim", "folke/tokyonight.nvim",     -- Status line
-        'nvim-lualine/lualine.nvim',                             -- Indentation guides
-        { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' }, -- Commenting
+        'nvim-lualine/lualine.nvim',                             -- Commenting
         'numToStr/Comment.nvim',                                 -- Detect tabstop and shiftwidth automatically
         'tpope/vim-sleuth',                                      -- Fuzzy Finder
         {

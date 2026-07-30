@@ -1,6 +1,5 @@
 require("comment")
 require("gitsigns")
-require("indent_blankline")
 -- require("lsp")
 require("lualine")
 require("mason")
