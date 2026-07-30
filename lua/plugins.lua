@@ -54,8 +54,7 @@ function M.setup()
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
             cond = vim.fn.executable 'make' == 1
-        }, -- Logfiles related
-        'mtdl9/vim-log-highlighting', {
+        }, {
         "okuuva/auto-save.nvim",
         version = "*",
         cmd = "ASToggle",
